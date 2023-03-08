@@ -2,6 +2,10 @@ package ra.model.service;
 
 import ra.model.entity.Users;
 
-public interface UserService<Users,Integer> extends RootService<Users,Integer> {
+
+public interface UserService extends RootService<Users,Integer> {
+    Users findUsersByUserName(String userName);
+    boolean existsByUserName(String userName);
+    boolean existsByEmail(String email);
 
 }
