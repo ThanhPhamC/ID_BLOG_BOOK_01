@@ -15,6 +15,8 @@ public class Users {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "UserId")
     private int userId;
+    @Column(name = "UserName")
+    private String userName;
     @Column(name = "FirstName")
     private String firstName;
     @Column(name = "LastName")
