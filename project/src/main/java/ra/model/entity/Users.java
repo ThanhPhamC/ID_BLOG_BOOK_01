@@ -5,7 +5,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Data
@@ -15,6 +18,8 @@ public class Users {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "UserId")
     private int userId;
+    @Column(name = "UserName")
+    private String userName;
     @Column(name = "FirstName")
     private String firstName;
     @Column(name = "LastName")
@@ -36,12 +41,13 @@ public class Users {
     @Column(name = "Avatar")
     private String avatar;
     @Column(name = "BirtDate")
-    private Date birtDate;
+    private LocalDate birtDate;
     @Column(name = "StatusUser")
     private boolean statusUser;
     @Column(name = "Ranks")
     private int ranks;
-    @Column(name = "Roles")
-    private boolean roles;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable( name = "user_role", joinColumns = @JoinColumn(name = "userId"), inverseJoinColumns = @JoinColumn(name = "roleId"))
+    private Set<Roles> listRoles = new HashSet<>();
 
 }
